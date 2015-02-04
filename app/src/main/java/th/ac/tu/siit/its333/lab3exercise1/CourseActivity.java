@@ -1,9 +1,14 @@
 package th.ac.tu.siit.its333.lab3exercise1;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 
 public class CourseActivity extends ActionBarActivity {
@@ -14,6 +19,21 @@ public class CourseActivity extends ActionBarActivity {
         setContentView(R.layout.activity_course);
     }
 
+    public void addCourse(View v) {
+        Intent res = new Intent();
+        EditText etCode = (EditText) findViewById(R.id.etCode);
+        EditText etCR = (EditText) findViewById(R.id.etCR);
+        RadioGroup Grades = (RadioGroup) findViewById(R.id.Grades);
+        RadioButton rb = (RadioButton) findViewById(Grades.getCheckedRadioButtonId());
+
+        res.putExtra("toCode", etCode.getText().toString());
+        res.putExtra("toCR", Integer.parseInt(etCR.getText().toString()));
+        res.putExtra("toGrade", rb.getText().toString());
+        setResult(RESULT_OK, res);
+
+
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
